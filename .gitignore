@@ -1,4 +1,4 @@
 *.xlsx
-*.json
+FAQ*.json
 .DS_Store
 node_modules/
