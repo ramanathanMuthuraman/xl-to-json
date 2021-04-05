@@ -3,9 +3,13 @@ const fs = require("fs");
 
 const result = excelToJson({
   sourceFile: "FAQ.xlsx",
+  header: {
+    rows: 1,
+  },
   columnToKey: {
-    A: "qtn",
-    B: "ans",
+    A: "category",
+    B: "qtn",
+    C: "ans",
   },
 });
 
@@ -14,6 +18,7 @@ const parseMobileData = (data = []) => {
     const updatedQtn = item.qtn.includes("?") ? item.qtn : `${item.qtn}?`;
     return {
       id: `${index}`,
+      category: [item.category],
       qtn: updatedQtn,
       answer: {
         type: "PARAGRAPH",
@@ -28,6 +33,7 @@ const parseWebData = (data = []) => {
     const updatedQtn = item.qtn.includes("?") ? item.qtn : `${item.qtn}?`;
     return {
       id: `${index + 1}`,
+      category: [item.category],
       qtn: updatedQtn,
       answer: {
         type: "PARAGRAPH",
